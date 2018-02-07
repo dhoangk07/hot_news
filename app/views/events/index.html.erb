@@ -1,0 +1,13 @@
+<h1>Top Stories</h1>
+
+<% @events.each do |event| %>
+
+	<h2><a href="<%=event.source%>" target="_blank"><%= event.title %></a><br/>
+
+	<small><%=host_without_www(event.source).capitalize%> | 
+	<%= event.date %><br/>
+	</small>
+	</h2>
+	
+
+<% end %>
