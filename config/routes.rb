@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :events do 
   	get :increase_view_count, on: :member 
   end
-	
+  
+	devise_for :users
+		resources :users
 
 	root to: 'events#index'
 end
