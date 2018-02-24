@@ -5,5 +5,8 @@
 	 <h3 ><%= link_to event.title , event.source , class: "source-link", id: "source-link-#{event.id}", target:"_blank" %></h3>
 
 		<small><%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>">View counts: <%= event.view_count%></a><br/></small>
-
+<p>
+  Tags:<%= event.tags.map(&:name).join(', ') %>
+</p>
 <% end %>
+<%=%>

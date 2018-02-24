@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :events do 
   	get :increase_view_count, on: :member 
   end
-  
+  get 'tags/:tag', to: 'events#index', as: :tag
 	devise_for :users
 		resources :users
 
