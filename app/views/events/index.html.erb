@@ -6,8 +6,8 @@
 
 		<small><%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>">View counts: <%= event.view_count%></a><br/></small>
   <%= link_to 'Edit Event', edit_event_path(event) %>
-</p>
+
 <p>
-  Tags: <%=event.tag_list%>
+  Tags: <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
 </p>
 <% end %>

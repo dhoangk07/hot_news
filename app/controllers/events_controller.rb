@@ -1,9 +1,13 @@
 class EventsController < ApplicationController
 	def index
-    @events = Event.all
+    @events = if params[:tag]
+      @events = Event.tagged_with(params[:tag])
+    else
+      @events = Event.all
+    end
   end
 
-	def news
+	def new
 		@event = Event.new
 	end
 
@@ -18,7 +22,8 @@ class EventsController < ApplicationController
   def update
   	@event = Event.find(params[:id])
     if @event.update_attributes(event_params)
-      redirect_to root_path, notice: 'Updated article.'
+      flash[:notice] = "Updated event"
+      redirect_to root_path
     else
       render :edit
     end

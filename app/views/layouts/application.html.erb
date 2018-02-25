@@ -15,6 +15,7 @@
     <% else %>
       <li><%= link_to('Login', new_user_session_path)  %></li>
     <% end %>
+    <%= render 'layouts/message' if !flash.empty? %>
     <%= yield %>
   </body>
 </html>
