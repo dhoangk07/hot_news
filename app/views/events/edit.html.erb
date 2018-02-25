@@ -1,0 +1,21 @@
+<h1> Edit Event</h1>
+
+<%= form_for @event, url: event_path(@event), html: { multipart: true } do |f| %>
+<p>
+  <%= f.label :title %>
+  <%= f.text_field :title, maxlength: 70  %>
+</p>
+  
+<p>
+  <%= f.label :source %>
+  <%= f.text_field :source, maxlength: 70 %>
+</p>
+
+<p>
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br/>
+  <%= f.text_field :tag_list, maxlength: 35 %>
+</p>
+
+<%= f.submit "Update" %>
+
+<% end %>
