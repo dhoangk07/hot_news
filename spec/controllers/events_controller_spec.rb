@@ -19,8 +19,6 @@ RSpec.describe EventsController do
       event.tags << tag
 
       event_2 = Event.create
-
-
       
       get :index, params: { :tag => "sport" } 
       expect(assigns(:events)).to eq([event])
