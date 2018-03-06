@@ -2,24 +2,25 @@
   <strong>Title:</strong>
   <%= @event.title %>
 </p>
- 
-<h2>Add a comment:</h2>
-<%= form_with(model: [ @event, @event.comments.build ], local: true) do |form| %>
-  
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
- 
-  <%= form.hidden_field :user_id, :value => current_user.id %>
-  <p>
-    <%= form.submit "Create" %>
-  </p>
+<% if current_user.present? %>
+  <h2>Add a comment:</h2>
+  <%= form_with(model: [ @event, @event.comments.build ], local: true) do |form| %>
+    
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+   
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <p>
+      <%= form.submit "Create" %>
+    </p>
+  <% end %>
 <% end %>
 
 <% @event.comments.each do |comment| %>
     <h6> Comment :<%= comment.body %></h6> 
-      <% if user_signed_in? && current_user == @event.user %>
+      <% if user_signed_in? && current_user == comment.user %>
     <%= link_to 'Edit', edit_event_comment_path(@event) %>
     <%= link_to 'Destroy', event_comment_path(@event),
                method: :delete,

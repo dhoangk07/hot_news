@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-	def index
+	skip_before_action :authenticate_user!, only: [:index, :show, :increase_view_count]
+  def index
     @events = if params[:tag]
       @events = Event.tagged_with(params[:tag])
     else
