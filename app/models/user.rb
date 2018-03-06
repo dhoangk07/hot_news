@@ -3,4 +3,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :comments
+  has_many :readings
 end
