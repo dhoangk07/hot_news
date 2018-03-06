@@ -1,6 +1,5 @@
 <h1> Edit Event</h1>
-
-<%= form_for @event, url: event_path(@event), html: { multipart: true } do |f| %>
+<%= form_with model: @event, local: true do |f| %>
 <p>
   <%= f.label :title %>
   <%= f.text_field :title, maxlength: 70  %>
