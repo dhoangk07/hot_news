@@ -3,8 +3,14 @@ class EventsController < ApplicationController
   def index
     @events = if params[:tag]
       @events = Event.tagged_with(params[:tag])
+
+    elsif params[:order] == 'name'
+      @events = Event.order('title ASC')
+
+    elsif params[:order] == 'id'
+      @events = Event.order('created_at ASC')
     else
-      @events = Event.all.order("created_at ASC")
+      @events = Event.all.order("view_count DESC")
     end
   end
 
