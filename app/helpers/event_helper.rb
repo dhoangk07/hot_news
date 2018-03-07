@@ -6,7 +6,7 @@ module EventHelper
 	end
 
 	def read?(user, event)
-		user && Reading.where(:user_id => user.id, :event_id => event.id).present?
+		user.present? && Reading.where(:user_id => user.id, :event_id => event.id).present?
 	end
 
 	def read_event_class(user, event)
