@@ -46,6 +46,14 @@ class EventsController < ApplicationController
 		end
   end
 
+  def hide
+    @event = Event.find(params[:id])
+    @hide = @event.hides.create(user_id: current_user.id)
+    respond_to do |format|
+      format.js
+    end
+  end
+
 	private
 	def event_params
     params.require(:event).permit(:title, :source, :tag_list)

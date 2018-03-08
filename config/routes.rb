@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	
   resources :events do 
   	get :increase_view_count, on: :member 
+    get :hide, on: :member
   	resources :comments
   end
   get 'tags/:tag', to: 'events#index', as: :tag
