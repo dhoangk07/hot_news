@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :events do 
   	get :increase_view_count, on: :member 
     get :hide, on: :member
+    get :hidden, on: :collection
   	resources :comments
   end
+  resources :display
   get 'tags/:tag', to: 'events#index', as: :tag
 	devise_for :users
 		resources :users

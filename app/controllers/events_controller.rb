@@ -54,6 +54,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def hidden
+    # display hidden events of current user
+    @hidden_events = Hide.includes(:event).where(:user_id => current_user)
+    debugger
+    event_ids = @hidden_events.select(:event_id)
+    #event_ids = @hidden_events.map{|hidden_event| hidden_event.event_id }
+    @events = Event.where(:id => event_ids)
+  end
+
 	private
 	def event_params
     params.require(:event).permit(:title, :source, :tag_list)
