@@ -62,10 +62,13 @@ class EventsController < ApplicationController
     @events = Event.where(:id => event_ids)
     if params[:order] == 'name'
       @events = Event.where(:id => event_ids).order('title ASC')
+      @events.order('title ASC')
     elsif params[:order] == 'id'
       @events = Event.where(:id => event_ids).order('created_at ASC')
+      @events.order('created_at ASC')
     else
       @events = Event.where(:id => event_ids).order("view_count DESC")
+      @events.order("view_count DESC")
     end
   end
 
