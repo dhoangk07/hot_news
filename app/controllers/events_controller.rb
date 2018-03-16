@@ -57,10 +57,16 @@ class EventsController < ApplicationController
   def hidden
     # display hidden events of current user
     @hidden_events = Hide.includes(:event).where(:user_id => current_user)
-    debugger
     event_ids = @hidden_events.select(:event_id)
     #event_ids = @hidden_events.map{|hidden_event| hidden_event.event_id }
     @events = Event.where(:id => event_ids)
+    if params[:order] == 'name'
+      @events = Event.where(:id => event_ids).order('title ASC')
+    elsif params[:order] == 'id'
+      @events = Event.where(:id => event_ids).order('created_at ASC')
+    else
+      @events = Event.where(:id => event_ids).order("view_count DESC")
+    end
   end
 
 	private
