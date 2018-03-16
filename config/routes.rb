@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   	get :increase_view_count, on: :member 
     get :hide, on: :member
     get :hidden, on: :collection
+    get :display, on: :member
   	resources :comments
   end
   resources :display

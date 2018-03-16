@@ -72,6 +72,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def display
+    @event = Event.find(params[:id])
+    Hide.where(:user_id =>current_user, :event_id => params[:id]).destroy_all
+    redirect_to hidden_events_path
+  end
+
 	private
 	def event_params
     params.require(:event).permit(:title, :source, :tag_list)
