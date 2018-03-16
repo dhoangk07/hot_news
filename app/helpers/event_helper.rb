@@ -18,4 +18,10 @@ module EventHelper
 	def hide?(user, event)
 		user.present? && Hide.where(:user_id => user.id, :event_id => event.id).present?
 	end
+
+	def liked_by_user?(user, event)
+		if user.present?
+ 			event.likes.where(user_id: user.id).present?
+ 		end
+  end
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get :hide, on: :member
     get :hidden, on: :collection
     get :display, on: :member
+    get :like, on: :member
+    get :unlike, on: :member
   	resources :comments
   end
   resources :display

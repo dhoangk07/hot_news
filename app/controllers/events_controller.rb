@@ -78,6 +78,18 @@ class EventsController < ApplicationController
     redirect_to hidden_events_path
   end
 
+  def like
+    @event = Event.find(params[:id])
+    @event.likes.create(user_id: current_user.id)
+    redirect_to events_path
+  end
+
+  def unlike
+    @event = Event.find(params[:id])
+    @event.likes.where(user_id: current_user.id).destroy_all
+    redirect_to events_path
+  end
+
 	private
 	def event_params
     params.require(:event).permit(:title, :source, :tag_list)

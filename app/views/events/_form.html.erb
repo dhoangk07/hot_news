@@ -36,6 +36,13 @@
               <span class="label">
                 <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
               </span>
+
+              <b>Number of likes: <%= event.likes.count %> </b>
+                  <% if liked_by_user?(current_user, event) %>
+                  <%= link_to 'Unlike', unlike_event_path(event) %>
+                  <% else %>
+                  <%= link_to 'Like', like_event_path(event) %>
+                  <% end %>
           </div>
         </div>  
       </div>

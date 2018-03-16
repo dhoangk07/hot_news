@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :readings
   has_many :hides
-
+  has_many :likes
   def self.tagged_with(name)
     Tag.find_by!(name: name).events
   end
