@@ -3,11 +3,18 @@ Rails.application.routes.draw do
 	
   resources :events do 
   	get :increase_view_count, on: :member 
+
     get :hide, on: :member
     get :hidden, on: :collection
     get :display, on: :member
+
+    get :bookmarked, on: :collection
+    get :bookmark, on: :member
+    get :unbookmark, on: :member
+
     get :like, on: :member
     get :unlike, on: :member
+
   	resources :comments
   end
   resources :display

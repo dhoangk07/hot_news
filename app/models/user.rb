@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :readings
   has_many :hides
   has_many :likes
+  has_many :bookmarks
 end

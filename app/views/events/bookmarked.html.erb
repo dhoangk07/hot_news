@@ -1,30 +1,21 @@
-<% events.each do |event| %>
-  <% unless hide?(current_user, event)%>
+<h3 align="center">Bookmark Page</h3>
+<% @events.each do |event| %>
   <div class="row">
     <div class="col-xs-9 col-xs-offset-2">
       <div class="well well-lg <%= read_event_class(current_user, event) %> event-wrapper" >
         <span class="input-group-btn">
-            <button class="btn btn-xs btn-default btn-primary hide-btn" type="button" id="hide-<%=event.id%>">Hide</button>
-          <%unless bookmark?(current_user, event)%>
-            <button class="btn btn-xs btn-default btn-primary bookmark-btn" type="button" id="bookmark-<%=event.id%>">Bookmark</button>
-          <%else%>
-
-            <div class="btn btn-xs btn-danger">Bookmarked</div>
-          <%end%>
+         <%= link_to "UnBookmark", unbookmark_event_path(event), class:"btn btn-xs btn-info" %>
         </span>
         <div class="event-title" >
-            <h3 >
+            <h3>
               <%= link_to event.title , event.source , class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
             </h3>
         </div>
-
         <div class="event-source" >
-
           <small>
             <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>">View counts: <%= event.view_count%></a><br/>
           </small>
         </div>
-
         <div class="event-edit">   
           <%if user_signed_in?%>
             <h6 class="btn btn-xs btn-info">
@@ -34,25 +25,15 @@
           <h6 class="btn btn-xs btn-warning">
             <%= link_to 'Show Event', event_path(event) %>
           <h6>
-
-            <div class="label label-danger">
+            <div class="label label-danger"><i class="fas fa-user"></i>
               Tags:
             </div>
-
             <span class="label">
               <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
             </span>
-
-            <b>Number of likes: <%= event.likes.count %> </b>
-                <% if liked_by_user?(current_user, event) %>
-                <%= link_to 'Unlike', unlike_event_path(event) %>
-                <% else %>
-                <%= link_to 'Like', like_event_path(event) %>
-                <% end %>
         </div>
       </div>  
     </div>
   </div>
-<% end %>
 <% end %>
 

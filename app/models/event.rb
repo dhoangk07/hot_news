@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :readings
   has_many :hides
   has_many :likes
+  has_many :bookmarks
   def self.tagged_with(name)
     Tag.find_by!(name: name).events
   end

@@ -19,6 +19,10 @@ module EventHelper
 		user.present? && Hide.where(:user_id => user.id, :event_id => event.id).present?
 	end
 
+	def bookmark?(user, event)
+	  user.present? && Bookmark.where(:user_id => user.id, :event_id => event.id).present?
+  end
+
 	def liked_by_user?(user, event)
 		if user.present?
  			event.likes.where(user_id: user.id).present?

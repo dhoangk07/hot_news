@@ -78,6 +78,26 @@ class EventsController < ApplicationController
     redirect_to hidden_events_path
   end
 
+  def bookmark
+    @event = Event.find(params[:id])
+    @bookmark = @event.bookmarks.create(user_id: current_user.id)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def bookmarked
+    @bookmark_events = Bookmark.includes(:event).where(:user_id => current_user)
+    event_ids = @bookmark_events.select(:event_id)
+    @events = Event.where(:id => event_ids)
+  end
+
+  def unbookmark
+    @event = Event.find(params[:id])
+    Bookmark.where(:user_id =>current_user, :event_id => params[:id]).destroy_all
+    redirect_to bookmarked_events_path
+  end
+
   def like
     @event = Event.find(params[:id])
     @event.likes.create(user_id: current_user.id)
@@ -91,8 +111,7 @@ class EventsController < ApplicationController
   end
 
 	private
-	def event_params
-    params.require(:event).permit(:title, :source, :tag_list)
-  end
-
+  	def event_params
+      params.require(:event).permit(:title, :source, :tag_list)
+    end
 end
