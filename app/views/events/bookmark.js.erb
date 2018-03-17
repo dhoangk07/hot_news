@@ -1,1 +1,1 @@
-$('#bookmark-<%= @event.id %>').hide().html(html).fadeIn('slow');
+$('#bookmark-<%= @event.id %>').replaceWith('<div class="btn btn-xs btn-danger">Bookmarked</div>');
