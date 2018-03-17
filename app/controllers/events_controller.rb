@@ -9,6 +9,7 @@ class EventsController < ApplicationController
 
     elsif params[:order] == 'id'
       @events = Event.order('created_at ASC')
+
     else
       @events = Event.all.order("view_count DESC")
     end
@@ -42,7 +43,6 @@ class EventsController < ApplicationController
 
   def increase_view_count
   	@event = Event.find(params[:id])
-    if @reading.present?
     if Reading.where(:user_id => current_user.id, :event_id => @event.id).blank?
       @reading = @event.readings.create(user_id: current_user.id)
     end
@@ -122,9 +122,9 @@ class EventsController < ApplicationController
     event_ids = @readings.select(:event_id)
     @events = Event.where(:id => event_ids).order('created_at DESC')
   end
+
 	private
   	def event_params
-      params.require(:event).permit(:title, :source, :tag_list)
       params.require(:event).permit(:title, :source, :tag_list, :search)
     end
 end
