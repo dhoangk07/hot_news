@@ -1,0 +1,12 @@
+<% @events.each do |event| %>
+  <div class="container">
+    <form>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">
+          <%= event.created_at.strftime("%I:%M%p")%>
+          <%= link_to event.title , event.source , class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
+        </label>
+      </div>
+    </form>
+  </div>
+<% end %>

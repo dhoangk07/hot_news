@@ -113,6 +113,11 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def history
+    @readings = Reading.where(:user_id => current_user.id)
+    event_ids = @readings.select(:event_id)
+    @events = Event.where(:id => event_ids).order('created_at DESC')
+  end
 	private
   	def event_params
       params.require(:event).permit(:title, :source, :tag_list)

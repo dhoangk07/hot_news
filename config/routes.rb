@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get :bookmark, on: :member
     get :unbookmark, on: :member
 
+    get :history, on: :collection
     get :like, on: :member
     get :unlike, on: :member
 
