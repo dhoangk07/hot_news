@@ -12,5 +12,6 @@
     <%= render "layouts/navigation" %> 
     <%= render 'layouts/message' if !flash.empty? %>
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
