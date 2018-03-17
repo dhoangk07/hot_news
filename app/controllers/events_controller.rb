@@ -12,6 +12,10 @@ class EventsController < ApplicationController
     else
       @events = Event.all.order("view_count DESC")
     end
+
+    if params[:search].present?
+      @events = @events.search(params[:search])
+    end
   end
 
 	def new
@@ -121,5 +125,6 @@ class EventsController < ApplicationController
 	private
   	def event_params
       params.require(:event).permit(:title, :source, :tag_list)
+      params.require(:event).permit(:title, :source, :tag_list, :search)
     end
 end

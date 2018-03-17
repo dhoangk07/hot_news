@@ -6,6 +6,15 @@ class Event < ApplicationRecord
   has_many :hides
   has_many :likes
   has_many :bookmarks
+
+  def self.search(search)
+    if search
+      self.where('title ILIKE ?', "%#{search}%")
+    else
+      self
+    end
+  end
+
   def self.tagged_with(name)
     Tag.find_by!(name: name).events
   end
