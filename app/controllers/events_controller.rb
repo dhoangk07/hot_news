@@ -38,11 +38,13 @@ class EventsController < ApplicationController
 
   def increase_view_count
   	@event = Event.find(params[:id])
-    @reading = @event.readings.create(user_id: current_user.id)
+    if @reading.present?
+      @reading = @event.readings.create(user_id: current_user.id)
+    end
+    @event.view_count +=1
+    @event.save
   	respond_to do |format|
 	    format.js
-		  @event.view_count +=1
-		  @event.save
 		end
   end
 
