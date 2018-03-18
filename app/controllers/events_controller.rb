@@ -5,13 +5,13 @@ class EventsController < ApplicationController
       @events = Event.tagged_with(params[:tag])
 
     elsif params[:order] == 'name'
-      @events = Event.order('title ASC')
+      @events = Event.paginate(page: params[:page], per_page: 5).order('title ASC')
 
     elsif params[:order] == 'id'
-      @events = Event.order('created_at ASC')
+      @events = Event.paginate(page: params[:page], per_page: 5).order('created_at ASC')
 
     else
-      @events = Event.all.order("view_count DESC")
+      @events = Event.paginate(page: params[:page], per_page: 5).order("view_count DESC")
     end
 
     if params[:search].present?

@@ -1,3 +1,6 @@
+<div align="center">
+  <%= will_paginate%>
+</div>
 <% events.each do |event| %>
   <% unless hide?(current_user, event)%>
   <div class="row">
@@ -55,4 +58,7 @@
   </div>
 <% end %>
 <% end %>
+<div align="center">
+  <%= will_paginate%>
+</div>
 
