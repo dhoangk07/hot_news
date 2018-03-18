@@ -7,6 +7,8 @@ class Event < ApplicationRecord
   has_many :likes
   has_many :bookmarks
 
+  validates_uniqueness_of :source
+
   def self.search(search)
     if search
       self.where('title ILIKE ?', "%#{search}%")
