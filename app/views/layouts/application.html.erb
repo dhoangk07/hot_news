@@ -3,15 +3,13 @@
   <head>
     <title>HotNews</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag 'application', media: 'all'%>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
     <%= render "layouts/navigation" %> 
+    <%= debug(params) if Rails.env.development? %>
     <%= render 'layouts/message' if !flash.empty? %>
     <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
