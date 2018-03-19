@@ -7,24 +7,25 @@
     <div class="col-xs-9 col-xs-offset-2">
       <div class="well well-lg <%= read_event_class(current_user, event) %> event-wrapper" >
         <span class="input-group-btn">
-            <button class="btn btn-xs btn-default btn-primary hide-btn" type="button" id="hide-<%=event.id%>">Hide</button>
+            <button class="btn btn-xs btn-default btn-primary " type="button"  title="Hide">
+              <i class="fa fa-toggle-on fa-2x hide-btn" id="hide-<%=event.id%>"></i>
+            </button>
           <%unless bookmark?(current_user, event)%>
-            <button class="btn btn-xs btn-default btn-primary bookmark-btn" type="button" id="bookmark-<%=event.id%>">Bookmark</button>
-
-            <i class="fa fa-star fa-2x icon-star"></i>
+            <button class="btn btn-xs btn-default btn-primary" type="button" title="Bookmark this page">
+              <i class="fa fa-star-o fa-2x bookmark-btn" id="bookmark-<%=event.id%>"></i>
+            </button>
           <%else%>
-
-            <div class="btn btn-xs btn-danger">Bookmarked</div>
+            <i class="fa fa-star fa-2x"></i>
           <%end%>
         </span>
         <div class="event-title" >
             <h3 >
-              <%= link_to event.title , event.source , class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
+              <%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
             </h3>
         </div>
 
         <div class="event-source" >
-          <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>"><i class="fa fa-eye fa-1x", title="View count"></i> <%= event.view_count%></a><br/>
+          <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
         </div>
 
         <div class="event-edit">   
