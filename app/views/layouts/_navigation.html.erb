@@ -39,8 +39,11 @@
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <%= form_tag events_path, :class =>"form-control", :method => 'get' do %>
-            <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-            <%= submit_tag "Search", :class => "btn btn-default" %>
+            <%= text_field_tag :search, params[:search], :class =>"form-control", placeholder: "Search" %>
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i> 
+              <!--<%= submit_tag "Search", :class =>"btn btn-default "%> -->
+            </button>
           <% end %>
         </div>
       </form>
@@ -48,13 +51,8 @@
   <% if user_signed_in? %>
     <li><%= link_to "#{current_user.name}", user_path(current_user) %></li>
     <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Profile <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Edit your profile", edit_user_path(current_user)%></li>
-            <li><%= link_to "View your profile", user_path(current_user)%></li>
-          </ul>
-    </li>
+    <li><%= link_to "Edit your profile", edit_user_path(current_user)%></li>
+            
   <% else %>
     <li><%= link_to "Log in ", new_user_session_path %></li>
     <li><%= link_to "Sign up", new_user_registration_path %></li>

@@ -1,5 +1,5 @@
 <div align="center">
-  <%= will_paginate%>
+  <%= will_paginate  %>
 </div>
 <% events.each do |event| %>
   <% unless hide?(current_user, event)%>
@@ -10,6 +10,8 @@
             <button class="btn btn-xs btn-default btn-primary hide-btn" type="button" id="hide-<%=event.id%>">Hide</button>
           <%unless bookmark?(current_user, event)%>
             <button class="btn btn-xs btn-default btn-primary bookmark-btn" type="button" id="bookmark-<%=event.id%>">Bookmark</button>
+
+            <i class="fa fa-star fa-2x icon-star"></i>
           <%else%>
 
             <div class="btn btn-xs btn-danger">Bookmarked</div>
@@ -22,29 +24,31 @@
         </div>
 
         <div class="event-source" >
-
-          <small>
-            <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>">View counts: <%= event.view_count%></a><br/>
-          </small>
+          <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a id="view-count-<%=event.id%>"><i class="fa fa-eye fa-1x", title="View count"></i> <%= event.view_count%></a><br/>
         </div>
 
         <div class="event-edit">   
           <%if user_signed_in?%>
-            <h6 class="btn btn-xs btn-info">
-              <%= link_to 'Edit Event', edit_event_path(event) %>
-            </h6>
+            <%= link_to edit_event_path(event) do %>
+              <i class="fa fa-edit fa-2x", title="Edit event"></i>
+            <% end %>
           <% end %>
-          <h6 class="btn btn-xs btn-warning">
-            <%= link_to 'Show Event', event_path(event) %>
-          <h6>
 
-            <div class="label label-danger">
-              Tags:
-            </div>
+            <%= link_to event_path(event) do %>
+              <i class="fa fa-tv fa-2x", title="Show event"></i>
+            <% end %>
+
+              <i class="fa fa-tag fa-2x icon-tag", title="Tags"></i>
 
             <span class="label">
               <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
             </span>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              <li><a href="#">Regular link</a></li>
+              <li class="disabled"><a href="#">Disabled link</a></li>
+              <li><a href="#">Another link</a></li>
+            </ul>
 
             <b>Number of likes: <%= event.likes.count %> </b>
                 <% if liked_by_user?(current_user, event) %>
