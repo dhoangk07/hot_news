@@ -24,7 +24,7 @@
         </div>
 
         <div class="event-source" >
-          <%=host_without_www(event.source).capitalize%> | <%= event.date %> | <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
+          <%=host_without_www(event.source).capitalize%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
         </div>
 
         <div class="event-edit">   
@@ -49,8 +49,8 @@
               <li class="disabled"><a href="#">Disabled link</a></li>
               <li><a href="#">Another link</a></li>
             </ul>
-
-            <b>Number of likes: <%= event.likes.count %> </b>
+            
+            <b><i class="fa fa-thumbs-up fa-2x"><%= event.likes.count %></i> </b>
                 <% if liked_by_user?(current_user, event) %>
                 <%= link_to 'Unlike', unlike_event_path(event) %>
                 <% else %>

@@ -1,7 +1,11 @@
 class EventsController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index, :show, :increase_view_count]
   def index
-    @events = Event.where.not(id: current_user.hides.select(:event_id))
+    if current_user.present?
+      @events = Event.where.not(id: current_user.hides.select(:event_id))
+    else
+      @events = Event.all
+    end
     @events = if params[:tag]
       @events = @events.tagged_with(params[:tag])
 
