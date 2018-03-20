@@ -15,6 +15,8 @@ class RssCrawler
         Event.create(title: item.title, source: item.link, date: Date.today)
       end 
     end
+  rescue => exception
+    puts exception
   end
 
 end
