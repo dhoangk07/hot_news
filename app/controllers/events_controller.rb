@@ -1,17 +1,18 @@
 class EventsController < ApplicationController
 	skip_before_action :authenticate_user!, only: [:index, :show, :increase_view_count]
   def index
+    @events = Event.where.not(id: current_user.hides.select(:event_id))
     @events = if params[:tag]
-      @events = Event.tagged_with(params[:tag])
+      @events = @events.tagged_with(params[:tag])
 
     elsif params[:order] == 'name'
-      @events = Event.paginate(page: params[:page], per_page: 5).order('title ASC')
+      @events = @events.paginate(page: params[:page], per_page: 5).order('title ASC')
 
     elsif params[:order] == 'id'
-      @events = Event.paginate(page: params[:page], per_page: 5).order('created_at ASC')
+      @events = @events.paginate(page: params[:page], per_page: 5).order('created_at ASC')
 
     else
-      @events = Event.paginate(page: params[:page], per_page: 5).order("view_count DESC")
+      @events = @events.paginate(page: params[:page], per_page: 5).order("view_count DESC")
     end
 
     if params[:search].present?
@@ -68,13 +69,13 @@ class EventsController < ApplicationController
     #event_ids = @hidden_events.map{|hidden_event| hidden_event.event_id }
     @events = Event.where(:id => event_ids)
     if params[:order] == 'name'
-      @events = Event.where(:id => event_ids).order('title ASC')
+      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order('title ASC')
       @events.order('title ASC')
     elsif params[:order] == 'id'
-      @events = Event.where(:id => event_ids).order('created_at ASC')
+      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order('created_at ASC')
       @events.order('created_at ASC')
     else
-      @events = Event.where(:id => event_ids).order("view_count DESC")
+      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order("view_count DESC")
       @events.order("view_count DESC")
     end
   end
@@ -96,7 +97,7 @@ class EventsController < ApplicationController
   def bookmarked
     @bookmark_events = Bookmark.includes(:event).where(:user_id => current_user)
     event_ids = @bookmark_events.select(:event_id)
-    @events = Event.where(:id => event_ids)
+    @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids)
   end
 
   def unbookmark
@@ -117,10 +118,10 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
-  def history
+  def history 
     @readings = Reading.where(:user_id => current_user.id)
     event_ids = @readings.select(:event_id)
-    @events = Event.where(:id => event_ids).order('created_at DESC')
+    @events = Event.paginate(page: params[:page], per_page: 10).where(:id => event_ids).order('created_at DESC')
   end
 
 	private

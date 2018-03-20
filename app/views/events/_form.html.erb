@@ -2,7 +2,6 @@
   <%= will_paginate  %>
 </div>
 <% events.each do |event| %>
-  <% unless hide?(current_user, event)%>
   <div class="row">
     <div class="col-xs-9 col-xs-offset-2">
       <div class="well well-lg <%= read_event_class(current_user, event) %> event-wrapper" >
@@ -61,7 +60,6 @@
       </div>  
     </div>
   </div>
-<% end %>
 <% end %>
 <div align="center">
   <%= will_paginate%>
