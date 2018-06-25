@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(version: 20180317023633) do
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", id: :serial, force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
