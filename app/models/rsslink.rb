@@ -1,8 +1,8 @@
 class Rsslink < ApplicationRecord
-  validates_uniqueness_of :source
+  validates_uniqueness_of :url
 
   def self.rss_importer
-    Rsslink.all.each do |rsslink|
+    self.all.each do |rsslink|
       RssCrawler.new(rsslink.url).run
     end
   end
