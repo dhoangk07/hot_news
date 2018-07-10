@@ -1,65 +1,72 @@
 <div align="center">
   <%= will_paginate  %>
 </div>
+<%= link_to new_rsslink_path do %> 
+  <i class="fa fa-plus fa-2x"></i> 
+<% end %>
 <% events.each do |event| %>
-  <div class="row">
-    <div class="col-xs-9 col-xs-offset-2">
-      <div class="well well-lg <%= read_event_class(current_user, event) %> event-wrapper" >
-        <span class="input-group-btn">
-            <button class="btn btn-xs btn-default btn-primary " type="button"  title="Hide">
-              <i class="fa fa-toggle-on fa-2x hide-btn" id="hide-<%=event.id%>"></i>
-            </button>
-          <%unless bookmark?(current_user, event)%>
-            <button class="btn btn-xs btn-default btn-primary" type="button" title="Bookmark this page">
-              <i class="fa fa-star-o fa-2x bookmark-btn" id="bookmark-<%=event.id%>"></i>
-            </button>
-          <%else%>
-            <i class="fa fa-star fa-2x"></i>
-          <%end%>
+<div class="row">
+  <div class="col-xs-9 col-xs-offset-2">
+    <div class="well well-lg <%= read_event_class(current_user, event) %> event-wrapper" >
+      <span class="input-group-btn">
+        <button class="btn btn-xs btn-default btn-primary " type="button"  title="Hide">
+          <i class="fa fa-toggle-on fa-2x hide-btn" id="hide-<%=event.id%>"></i>
+        </button>
+
+        <%unless bookmark?(current_user, event)%>
+        <button class="btn btn-xs btn-default btn-primary" type="button" title="Bookmark">
+          <i class="fa fa-star-o fa-2x bookmark-btn" id="bookmark-<%=event.id%>"></i>
+        </button>
+
+
+
+        <%else%>
+        <i class="fa fa-star fa-2x"></i>
+        <%end%>
+      </span>
+      <div class="event-title" >
+        <h3 >
+          <%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
+        </h3>
+      </div>
+
+      <div class="event-source" >
+        <%=host_without_www(event.source).capitalize%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
+      </div>
+
+      <div class="event-edit">   
+        <%if user_signed_in?%>
+        <%= link_to edit_event_path(event) do %>
+        <i class="fa fa-edit fa-2x", title="Edit event"></i>
+        <% end %>
+        <% end %>
+
+        <%= link_to event_path(event) do %>
+        <i class="fa fa-tv fa-2x", title="Show event"></i>
+        <% end %>
+
+        <i class="fa fa-tag fa-2x icon-tag", title="Tags"></i>
+
+        <span class="label">
+          <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
         </span>
-        <div class="event-title" >
-            <h3 >
-              <%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
-            </h3>
-        </div>
 
-        <div class="event-source" >
-          <%=host_without_www(event.source).capitalize%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+          <li><a href="#">Regular link</a></li>
+          <li class="disabled"><a href="#">Disabled link</a></li>
+          <li><a href="#">Another link</a></li>
+        </ul>
 
-        <div class="event-edit">   
-          <%if user_signed_in?%>
-            <%= link_to edit_event_path(event) do %>
-              <i class="fa fa-edit fa-2x", title="Edit event"></i>
-            <% end %>
-          <% end %>
-
-            <%= link_to event_path(event) do %>
-              <i class="fa fa-tv fa-2x", title="Show event"></i>
-            <% end %>
-
-              <i class="fa fa-tag fa-2x icon-tag", title="Tags"></i>
-
-            <span class="label">
-              <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
-            </span>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-              <li><a href="#">Regular link</a></li>
-              <li class="disabled"><a href="#">Disabled link</a></li>
-              <li><a href="#">Another link</a></li>
-            </ul>
-            
-            <b><i class="fa fa-thumbs-up fa-2x"><%= event.likes.count %></i> </b>
-                <% if liked_by_user?(current_user, event) %>
-                <%= link_to 'Unlike', unlike_event_path(event) %>
-                <% else %>
-                <%= link_to 'Like', like_event_path(event) %>
-                <% end %>
-        </div>
-      </div>  
-    </div>
+        <b><i class="fa fa-thumbs-up fa-2x"><%= event.likes.count %></i> </b>
+        <% if liked_by_user?(current_user, event) %>
+        <%= link_to 'Unlike', unlike_event_path(event) %>
+        <% else %>
+        <%= link_to 'Like', like_event_path(event) %>
+        <% end %>
+      </div>
+    </div>  
   </div>
+</div>
 <% end %>
 <div align="center">
   <%= will_paginate%>

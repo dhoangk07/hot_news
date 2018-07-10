@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   	resources :comments
   end
+  resources :rsslinks
   resources :display
+  
   get 'tags/:tag', to: 'events#index', as: :tag
 	devise_for :users
 		resources :users
