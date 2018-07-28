@@ -8,6 +8,4 @@ namespace :rss_importer do
   task huge_events: :environment do
     Rsslink.rss_importer
   end
-  
- 
 end

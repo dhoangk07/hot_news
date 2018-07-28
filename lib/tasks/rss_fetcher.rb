@@ -20,4 +20,19 @@ desc "Import nytimes events"
 task nytimes: :environment do 
   RssCrawler.new('http://rss.nytimes.com/services/xml/rss/nyt/Baseball.xml').run
 
+desc "Import thanhnien"
+task thanhnien: :environment do 
+  RssCrawler.new('https://thanhnien.vn/rss/phap-luat/trong-an.rss').run
 end
+
+desc "Import Trending Searches events"
+task google: :environment do 
+  RssCrawler.new('https://trends.google.com/trends/trendingsearches/daily/rss?geo=VN').run
+end
+
+desc "Import Newyork events"
+task Newyork: :environment do 
+  RssCrawler.new('http://nymag.com/rss/In_Season.xml').run
+end
+
+
