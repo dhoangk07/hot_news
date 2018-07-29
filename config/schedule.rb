@@ -17,8 +17,9 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 5.minutes do
-   rake "Rsslink.rss_importer", :environment => "development"
+every 1.minute do
+      debugger
+  rake "rss_importer:huge_events"
 end
 
 # Learn more: http://github.com/javan/whenever
