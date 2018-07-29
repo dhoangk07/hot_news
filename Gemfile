@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   # gem 'simple_form'
   gem 'whenever'   , require: false
+  gem "feedjira"
 end
 
 group :development do
