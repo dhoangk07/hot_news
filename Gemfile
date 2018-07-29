@@ -26,7 +26,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.7'
   gem 'rails-controller-testing'
-  gem 'simple_form'
+  # gem 'simple_form'
   gem 'whenever'   , require: false
 end
 

@@ -18,8 +18,7 @@
 # end
 
 every 1.minute do
-      debugger
-  rake "rss_importer:huge_events"
+  rake "rss_importer:huge_events:task"
 end
 
 # Learn more: http://github.com/javan/whenever
