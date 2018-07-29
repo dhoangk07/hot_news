@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rsslinks.each_with_index do |rsslink, index| %>
+      <tr>
+        <td><%= index +1 %></td>
+        <td><%= rsslink.url %></td>
+        <td><%= link_to 'Show', rsslink_path(rsslink) %></td>
+        <td><%= link_to "Edit", edit_rsslink_path(rsslink)%></td>
+        <td><%= link_to "Destroy", rsslink_path(rsslink),
+                method: :delete,
+                data: { confirm: "Are you sure? "} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', events_path%>

@@ -1,7 +1,7 @@
 class RsslinksController < ApplicationController
   before_action :set_rsslink, only: %i[edit update show destroy]
   def index
-    @rsslink = Rsslink.all
+    @rsslinks = Rsslink.all
   end
   
   def new
@@ -38,10 +38,10 @@ class RsslinksController < ApplicationController
   def destroy
     if @rsslink.destroy
       flash[:danger] = "Rsslink has been deleted successfully"
-      redirect_to events_path
+      redirect_to rsslinks_path
     else
       flash.now[:error] = @rsslink.errors.full_messages.join(", ")
-      redirect_to events_path
+      redirect_to rsslinks_path
     end
   end
   
