@@ -29,6 +29,7 @@ group :development, :test do
   # gem 'simple_form'
   gem 'whenever'   , require: false
   gem "feedjira"
+  gem 'faker'
 end
 
 group :development do
