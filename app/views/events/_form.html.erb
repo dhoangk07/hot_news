@@ -32,7 +32,7 @@
       </div>
 
       <div class="event-source" >
-        <%=host_without_www(event.source).capitalize%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
+        <%= link_to "#{host_without_www(event.source).capitalize}", event.source%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
       </div>
 
       <div class="event-edit">   
