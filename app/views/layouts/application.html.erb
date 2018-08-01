@@ -11,5 +11,14 @@
     <%= debug(params) if Rails.env.development? %>
     <%= render 'layouts/message' if !flash.empty? %>
     <%= yield %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123175015-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-123175015-1');
+    </script>
   </body>
 </html>
