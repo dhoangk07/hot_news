@@ -23,6 +23,9 @@ class EventsController < ApplicationController
     if params[:search].present?
       @events = @events.search(params[:search])
     end
+    if params[:filter].present?
+      @events = Event.where('source ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page], per_page: 5)
+    end
   end
 
 	def new
