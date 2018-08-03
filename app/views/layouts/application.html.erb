@@ -18,9 +18,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
   <body>
-    <%= render "layouts/navigation" %> 
-    <%= debug(params) if Rails.env.development? %>
-    <%= render 'layouts/message' if !flash.empty? %>
+     <%= render "layouts/navigation" %>
     <%= yield %>
   </body>
 </html>
