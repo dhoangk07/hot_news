@@ -17,7 +17,7 @@ gem 'jbuilder'               , '~> 2.5'
 gem 'jquery-rails'
 gem "font-awesome-rails"
 gem 'will_paginate'          , '~> 3.1.0'
-gem 'bootstrap-will_paginate', '0.0.10'
+gem 'bootstrap-will_paginate', '~> 1.0'
 gem 'bootstrap'              , '~> 4.1.3'
 
 group :development, :test do
