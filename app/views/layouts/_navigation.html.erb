@@ -1,11 +1,13 @@
-<div class="pull-right mt-lg-4 pl-lg-4">
-  <% if user_signed_in? %>
-    <span><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
-    <span><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-success btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
-  <% else %>
-    
+<nav class="nav">
+  <div class="pull-right mt-lg-4 pl-lg-4">
+    <% if user_signed_in? %>
+      <span><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
+      <span><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-success btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
+      <span><%=link_to "Add RssLink", new_rsslink_path, class: "btn btn-primary btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
+    <% else %>
       <span><%= link_to "Log in ", new_user_session_path, class: "btn btn-success btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
       <span><%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
-    
-  <% end %>  
-</div>
+
+    <% end %>  
+  </div>
+</nav>
