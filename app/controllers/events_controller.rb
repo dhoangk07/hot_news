@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-	skip_before_action :authenticate_user!, only: [:index, :show, :increase_view_count]
+	skip_before_action :authenticate_user!, only: %i[index show increase_view_count]
+  before_action :set_article, only: %i[edit update show destroy increase_view_count hide bookmark unbookmark like unlike]
   def index
     if current_user.present?
       @events = Event.where.not(id: current_user.hides.select(:event_id))
@@ -33,15 +34,12 @@ class EventsController < ApplicationController
 	end
 
 	def show
-   @event = Event.find(params[:id])
   end
 
 	def edit
-  	@event = Event.find(params[:id])
   end
 
   def update
-  	@event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       flash[:notice] = "Updated event"
       redirect_to root_path
@@ -51,7 +49,6 @@ class EventsController < ApplicationController
   end
 
   def increase_view_count
-  	@event = Event.find(params[:id])
     if Reading.where(:user_id => current_user.id, :event_id => @event.id).blank?
       @reading = @event.readings.create(user_id: current_user.id)
     end
@@ -63,7 +60,6 @@ class EventsController < ApplicationController
   end
 
   def hide
-    @event = Event.find(params[:id])
     @hide = @event.hides.create(user_id: current_user.id)
     respond_to do |format|
       format.js
@@ -89,13 +85,11 @@ class EventsController < ApplicationController
   end
 
   def display
-    @event = Event.find(params[:id])
     Hide.where(:user_id =>current_user, :event_id => params[:id]).destroy_all
     redirect_to hidden_events_path
   end
 
   def bookmark
-    @event = Event.find(params[:id])
     @bookmark = @event.bookmarks.create(user_id: current_user.id)
     respond_to do |format|
       format.js
@@ -109,19 +103,16 @@ class EventsController < ApplicationController
   end
 
   def unbookmark
-    @event = Event.find(params[:id])
     Bookmark.where(:user_id =>current_user, :event_id => params[:id]).destroy_all
     redirect_to bookmarked_events_path
   end
 
   def like
-    @event = Event.find(params[:id])
     @event.likes.create(user_id: current_user.id)
     redirect_to events_path
   end
 
   def unlike
-    @event = Event.find(params[:id])
     @event.likes.where(user_id: current_user.id).destroy_all
     redirect_to events_path
   end
@@ -133,7 +124,10 @@ class EventsController < ApplicationController
   end
 
 	private
-  	def event_params
-      params.require(:event).permit(:title, :source, :tag_list, :search)
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
+	def event_params
+    params.require(:event).permit(:title, :source, :tag_list, :search)
+  end
 end
