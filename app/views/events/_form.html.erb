@@ -6,13 +6,13 @@
   <% events.each do |event| %>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <div class="breadcrumb-item col-lg-12<%= read_event_class(current_user, event) %> event-wrapper" >
+        <div class="breadcrumb-item col-lg-12<%= read_event_class(current_user, event) %> event-wrapper pr-lg-0" >
           <span class="input-group-btn float-right">
-            <button class="btn btn-icon waves-effect waves-light btn-warning m-b-5 " type="button"  title="Hide">
+            <button class="btn btn-icon waves-effect waves-light btn-smm btn-warning m-b-5 " type="button"  title="Hide">
               <i class="fa fa-keyboard-o" id="hide-<%=event.id%>" ></i>
             </button>
             <%unless bookmark?(current_user, event)%>
-              <button class="btn btn-icon waves-effect waves-light btn-primary m-b-5" type="button" title="Bookmark">
+              <button class="btn btn-icon waves-effect waves-light btn-smm btn-primary m-b-5" type="button" title="Bookmark">
                 <i class="fa fa-star bookmark-btn" id="bookmark-<%=event.id%>"></i>
 
               </button>
@@ -63,3 +63,19 @@
   <% end %>
 </div>
 
+<style type="text/css">
+  .btn-smm{
+  padding: 0.25rem 0.5rem;
+  font-size: 8px;
+  line-height: 2;
+  border-radius: 4px;
+  }
+/*
+.pagination {
+  display: flex;
+  padding-left: 140px !important;
+  list-style: none;
+  border-radius: 0.25rem;
+  }*/
+
+</style>
