@@ -5,69 +5,57 @@
 <div class="container mb-lg-4">
   <% events.each do |event| %>
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <div class="breadcrumb-item col-lg-12<%= read_event_class(current_user, event) %> event-wrapper pr-lg-0" >
+      <ol class="breadcrumb <%= read_event_class(current_user, event) %>">
+        <div class="breadcrumb-item col-lg-12 <%= read_event_class(current_user, event) %> event-wrapper pr-lg-3" >
           <span class="input-group-btn float-right">
-            <button class="btn btn-icon waves-effect waves-light btn-smm btn-warning m-b-5 " type="button"  title="Hide">
+            <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary mr-lg-2 " type="button"  title="Hide">
               <i class="fa fa-keyboard-o" id="hide-<%=event.id%>" ></i>
             </button>
-            <button class="btn btn-icon waves-effect waves-light btn-smm btn-primary m-b-5" type="button" title="Tags">
-              <i class="fa fa-tag icon-tag", title="Tags"></i>
-            </button>
             <%unless bookmark?(current_user, event)%>
-              <button class="btn btn-icon waves-effect waves-light btn-smm btn-primary m-b-5" type="button" title="Bookmark">
+              <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5" type="button" title="Bookmark">
                 <i class="fa fa-star bookmark-btn" id="bookmark-<%=event.id%>"></i>
               </button>
             <%else%>
-              <i class="fa fa-star fa-2x"></i>
+              <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5 " type="button" title="Bookmark">
+                <i class="fa fa-star"></i>
+              </button>
             <%end%>
           </span>
           <div class="event-title" >
-            <h6>
+            <h4>
               <%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
-            </h6>
+            </h4>
           </div>
           <div class="event-source" >
-            <%= link_to "#{host_without_www(event.source).capitalize}", events_path(filter: host_without_www(event.source))%>| <a><i class="fa fa-eye fa-1x", title="View count" id="view-count-<%=event.id%>"></i> <%= event.view_count%></a><br/>
+            <h6><%= link_to "#{host_without_www(event.source).capitalize}", events_path(filter: host_without_www(event.source))%></h6> 
           </div>
+            <button class="btn btn-light btn-sm" type="button" title="Tags">
+              <i class="fa fa-tags icon-tag", title="Tags">Tags</i>
+            </button>
           <div class="event-edit">   
-            
-
             <span class="label">
               <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
             </span>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-              <li><a href="#">Regular link</a></li>
-              <li class="disabled"><a href="#">Disabled link</a></li>
-              <li><a href="#">Another link</a></li>
-            </ul>
-
-            <b><i class="fa fa-thumbs-up fa-2x"><%= event.likes.count %></i> </b>
+          </div>
+          <div class="btn-bottom mt-lg-2">
+            <button class="btn btn-icon waves-effect waves-light btn-sm btn-secondary mr-lg-1 disabled" type="button" title="View Count">
+              <i class="fa fa-eye fa-1x ", title="View count" id="view-count-<%=event.id%>"></i>
+            </button>
+            <span class= "btn btn-icon waves-effect waves-light btn-sm btn-secondary mx-lg-1 disabled">
+              <%= event.view_count %>
+            </span> |
+            <button class="btn btn-icon waves-effect waves-light btn-sm btn-secondary mx-lg-1 disabled" type="button" title="Like Count">
+              <i class="fa fa-thumbs-up"></i> 
+            </button>
+            <span class="btn btn-icon waves-effect waves-light btn-sm btn-secondary mx-lg-1 disabled"><%= event.likes.count %></span>  
               <% if liked_by_user?(current_user, event) %>
                 <%= link_to 'Unlike', unlike_event_path(event) %>
               <% else %>
                 <%= link_to 'Like', like_event_path(event) %>
               <% end %>
           </div>
-        </div>  
       </ol>
     </nav>
   <% end %>
 </div>
 
-<style type="text/css">
-  .btn-smm{
-  padding: 0.25rem 0.5rem;
-  font-size: 8px;
-  line-height: 2;
-  border-radius: 4px;
-  }
-/*
-.pagination {
-  display: flex;
-  padding-left: 140px !important;
-  list-style: none;
-  border-radius: 0.25rem;
-  }*/
-
-</style>
