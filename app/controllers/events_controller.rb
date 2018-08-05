@@ -12,19 +12,18 @@ class EventsController < ApplicationController
       @events = @events.tagged_with(params[:tag])
 
     elsif params[:order] == 'name'
-      @events = @events.paginate(page: params[:page], per_page: 5).order('title ASC')
+      @events = @events.paginate(page: params[:page], per_page: 25).order('title ASC')
 
     elsif params[:order] == 'id'
-      @events = @events.paginate(page: params[:page], per_page: 5).order('created_at ASC')
+      @events = @events.paginate(page: params[:page], per_page: 25).order('created_at ASC')
 
     else
-      @events = @events.paginate(page: params[:page], per_page: 5).order("view_count DESC")
+      @events = @events.paginate(page: params[:page], per_page: 25).order("view_count DESC")
     end
 
     if params[:search].present?
       @events = @events.search(params[:search])
-    end
-    if params[:filter].present?
+    elsif params[:filter].present?
       @events = Event.where('source ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page], per_page: 5)
     end
   end
@@ -67,19 +66,17 @@ class EventsController < ApplicationController
   end
 
   def hidden
-    # display hidden events of current user
     @hidden_events = Hide.includes(:event).where(:user_id => current_user)
     event_ids = @hidden_events.select(:event_id)
-    #event_ids = @hidden_events.map{|hidden_event| hidden_event.event_id }
     @events = Event.where(:id => event_ids)
     if params[:order] == 'name'
-      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order('title ASC')
+      @events = Event.paginate(page: params[:page], per_page: 25).where(:id => event_ids).order('title ASC')
       @events.order('title ASC')
     elsif params[:order] == 'id'
-      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order('created_at ASC')
+      @events = Event.paginate(page: params[:page], per_page: 25).where(:id => event_ids).order('created_at ASC')
       @events.order('created_at ASC')
     else
-      @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids).order("view_count DESC")
+      @events = Event.paginate(page: params[:page], per_page: 25).where(:id => event_ids).order("view_count DESC")
       @events.order("view_count DESC")
     end
   end
