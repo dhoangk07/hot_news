@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
 	skip_before_action :authenticate_user!, only: %i[index show increase_view_count]
-  before_action :set_article, only: %i[edit update show destroy increase_view_count hide bookmark unbookmark like unlike]
+  before_action :set_event, only: %i[edit update show destroy increase_view_count hide bookmark unbookmark like unlike]
   def index
     if current_user.present?
       @events = Event.where.not(id: current_user.hides.select(:event_id))
     else
-      @events = Event.order("created_at DESC").all
+      @events = Event.order("created_at DESC").paginate(page: params[:page], per_page: 25).all
     end
 
     @events = if params[:tag]
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     if params[:search].present?
       @events = @events.search(params[:search])
     elsif params[:filter].present?
-      @events = Event.where('source ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page], per_page: 5)
+      @events = Event.where('source ILIKE ?', "%#{params[:filter]}%").paginate(page: params[:page], per_page: 25)
     end
   end
 
@@ -96,7 +96,7 @@ class EventsController < ApplicationController
   def bookmarked
     @bookmark_events = Bookmark.includes(:event).where(:user_id => current_user)
     event_ids = @bookmark_events.select(:event_id)
-    @events = Event.paginate(page: params[:page], per_page: 5).where(:id => event_ids)
+    @events = Event.paginate(page: params[:page], per_page: 25).where(:id => event_ids)
   end
 
   def unbookmark
@@ -117,7 +117,7 @@ class EventsController < ApplicationController
   def history 
     @readings = Reading.where(:user_id => current_user.id)
     event_ids = @readings.select(:event_id)
-    @events = Event.paginate(page: params[:page], per_page: 10).where(:id => event_ids).order('created_at DESC')
+    @events = Event.paginate(page: params[:page], per_page: 25).where(:id => event_ids).order('created_at DESC')
   end
 
 	private
