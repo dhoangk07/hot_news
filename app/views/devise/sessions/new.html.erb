@@ -1,9 +1,8 @@
-<div class="col-lg-4 offset-lg-4">
-  <h1 class="text-center font-weight-bold text-success mt-lg-5">Sign in</h1>
+<div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
+  <h1 class="text-center font-weight-bold text-success mt-lg-5 mt-md-5 mt-sm-5 mt-5">Sign in</h1>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.input :email, required: true, autofocus: true, placeholder: "Email address" %>
     <%= f.input :password, required: true, placeholder: "Password" %>
-
     <% if devise_mapping.rememberable?%>
       <div class="field">
         <%= f.check_box :remember_me %>
