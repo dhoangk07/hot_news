@@ -23,4 +23,11 @@ abbr[title] {
 .event-source{
   color: #00ddff;
 }
-
+.fixed-bottom {
+  clear: both;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
