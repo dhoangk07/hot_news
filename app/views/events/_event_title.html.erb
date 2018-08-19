@@ -1,7 +1,5 @@
 <div class="event-title" >
-  <h4>
-    <%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %>
-  </h4>
+  <h4><%= link_to event.title, event.source, class: "source-link", id: "source-link-#{event.id}", target:"_blank" %></h4>
 </div>
 <div class="event-source" >
   <h6><%= link_to "#{host_without_www(event.source).capitalize}", events_path(filter: host_without_www(event.source))%></h6> 
@@ -10,7 +8,5 @@
   <i class="fa fa-tags icon-tag", title="Tags">Tags</i>
 </button>
 <div class="event-edit">   
-  <span class="label">
-    <%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %>
-  </span>
+  <span class="label"><%= raw event.tags.map(&:name).map { |t| link_to t, tag_path(t)}.join(', ') %></span>
 </div>

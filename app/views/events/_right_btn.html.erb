@@ -3,12 +3,12 @@
     <i class="fa fa-keyboard-o" id="hide-<%=event.id%>" ></i>
   </button>
   <%unless bookmark?(current_user, event)%>
-  <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5" type="button" title="Bookmark">
-    <i class="fa fa-star bookmark-btn" id="bookmark-<%=event.id%>"></i>
-  </button>
+    <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5" type="button" title="Bookmark">
+      <i class="fa fa-star bookmark-btn" id="bookmark-<%=event.id%>"></i>
+    </button>
   <%else%>
-  <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5 " type="button" title="Bookmark">
-    <i class="fa fa-star"></i>
-  </button>
+    <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5 " type="button" title="Bookmark">
+      <i class="fa fa-star"></i>
+    </button>
   <%end%>
 </span>

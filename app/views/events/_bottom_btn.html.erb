@@ -32,24 +32,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="fill-data offset-1">
-          <% event.comments.each do |comment| %>
-          <%= comment.body %> </br>
-          <small><b>
-            <%= comment.user.name %> - 
-            <%= time_ago_in_words(comment.created_at) %>
-          </b></small> 
-          <% end %>
-        </div>
-        <div class="modal-body">
-          <% if user_signed_in? %>
-          <%= simple_form_for [event, event.comments.new], method: :post, remote: true do |f|%>
-          <%= f.input :body, input_html: {class: 'comment-content'} %>                              
-          <%= f.input :user, :as => :hidden, input_html: { value: current_user.id }%>
-          <%= f.submit %>
-          <% end %>
-          <% end %>
-        </div>
+        <%= render 'comments/content', event: event %>
+        <%= render 'comments/form',    event: event %>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Submit</button>
