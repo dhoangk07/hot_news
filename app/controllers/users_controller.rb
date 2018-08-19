@@ -14,32 +14,30 @@ class UsersController < ApplicationController
   		flash[:success] = "Welcome to the alpha blog #{@user.username}"
   		redirect_to articles_path
   	else
+      flash.now[:error] = @user.errors.full_messages.join(", ")
   		render 'new'
   	end
   end
 
-  def edit
-  end
+  def edit;end
 
   def update
   	if @user.update(user_params)
   		flash[:success] = "Your account was updated successfully" 
   		redirect_to articles_path
   	else
+      flash.now[:error] = @user.errors.full_messages.join(", ")
   		render 'edit'
   	end
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+  def show;end
 
   private
+    def set_user
+      @user = User.find(params[:id])
+    end
     def user_params
     	params.require(:user).permit(:name, :email, :password)
     end
-
-	def set_user
-		@user = User.find(params[:id])
-	end
 end
