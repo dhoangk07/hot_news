@@ -11,14 +11,13 @@
 
   <span class="btn btn-icon waves-effect waves-light btn-sm btn-secondary mx-lg-1 disabled"><%= event.likes.count %></span>  
   <% if liked_by_user?(current_user, event) %>
-  <%= link_to 'Unlike', unlike_event_path(event) %>
+    <%= link_to 'Unlike', unlike_event_path(event) %>
   <% else %>
-  <%= link_to 'Like', like_event_path(event) %>
+    <%= link_to 'Like', like_event_path(event) %>
   <% end %>
 
-
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong-<%=event.id%>">
+  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalLong-<%=event.id%>">
     <i class="fa fa-comments"></i>
   </button>
 
