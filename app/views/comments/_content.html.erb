@@ -1,0 +1,9 @@
+<div class="fill-data offset-1">
+  <% event.comments.each do |comment| %>
+    <%= comment.body %> </br>
+    <small><b>
+      <%= comment.user.name %> - 
+      <%= time_ago_in_words(comment.created_at) %>
+    </b></small> 
+  <% end %>
+</div>
