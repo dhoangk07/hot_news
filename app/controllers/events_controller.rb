@@ -12,13 +12,13 @@ class EventsController < ApplicationController
       @events = @events.tagged_with(params[:tag])
 
     elsif params[:order] == 'name'
-      @events = @events.page params[:page].order('title ASC')
+      @events = @events.order('title ASC').page params[:page]
 
     elsif params[:order] == 'id'
-      @events = @events.page params[:page].order('created_at ASC')
+      @events = @events.order('created_at ASC').page params[:page]
 
     else
-      @events = @events.page params[:page].order("view_count DESC")
+      @events = @events.order("view_count DESC").page params[:page]
     end
 
     if params[:search].present?
@@ -69,13 +69,13 @@ class EventsController < ApplicationController
     event_ids = @hidden_events.select(:event_id)
     @events = Event.where(:id => event_ids)
     if params[:order] == 'name'
-      @events = Event.page params[:page].where(:id => event_ids).order('title ASC')
+      @events = Event.where(:id => event_ids).order('title ASC').page params[:page]
       @events.order('title ASC')
     elsif params[:order] == 'id'
-      @events = Event.page params[:page].where(:id => event_ids).order('created_at ASC')
+      @events = Event.where(:id => event_ids).order('created_at ASC').page params[:page]
       @events.order('created_at ASC')
     else
-      @events = Event.page params[:page].where(:id => event_ids).order("view_count DESC")
+      @events = Event.where(:id => event_ids).order("view_count DESC").page params[:page]
       @events.order("view_count DESC")
     end
   end
@@ -95,7 +95,7 @@ class EventsController < ApplicationController
   def bookmarked
     @bookmark_events = Bookmark.includes(:event).where(:user_id => current_user)
     event_ids = @bookmark_events.select(:event_id)
-    @events = Event.page params[:page].where(:id => event_ids)
+    @events = Event.where(:id => event_ids).page params[:page]
   end
 
   def unbookmark
@@ -116,7 +116,7 @@ class EventsController < ApplicationController
   def history 
     @readings = Reading.where(:user_id => current_user.id)
     event_ids = @readings.select(:event_id)
-    @events = Event.page params[:page].where(:id => event_ids).order('created_at DESC')
+    @events = Event.where(:id => event_ids).order('created_at DESC').page params[:page]
   end
 
 	private
