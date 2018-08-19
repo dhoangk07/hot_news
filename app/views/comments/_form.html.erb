@@ -1,8 +1,9 @@
 <div class="modal-body">
 	<% if user_signed_in? %>
-	 	<%= simple_form_for [event, event.comments.new], method: :post, remote: true do |f|%>
+	 	<%= simple_form_for [event, event.comments.new], method: :post, remote: true do |f| %>
 		 	<%= f.input :body, input_html: {class: 'comment-content'} %>                              
-		 	<%= f.input :user, :as => :hidden, input_html: { value: current_user.id }%>
+      <%= f.input :user_id, :as => :hidden, input_html: { value: current_user.id } %>
+		 	<%= f.input :event_id, :as => :hidden, input_html: { value: event.id }%>
 		 	<%= f.submit %>
 	 	<% end %>
 	<% end %>

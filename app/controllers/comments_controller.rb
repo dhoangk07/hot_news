@@ -6,9 +6,15 @@ class CommentsController < ApplicationController
 
 	def create
 		@event = Event.find(params[:event_id])
-		@comment = @event.comments.create(comment_params)
-			flash[:success] = "Comment was successfully created"
-		redirect_to event_path(@event)
+		@comment = @event.comments.new(comment_params)
+			if @comment.save
+				respond_to do |format|
+	        # format.html { redirect_to event_path(@event.comment) }
+	        format.js
+      	end
+      end
+			# flash[:success] = "Comment was successfully created"
+		# redirect_to event_comment_path(@event)
 	end
 	
 	def destroy
