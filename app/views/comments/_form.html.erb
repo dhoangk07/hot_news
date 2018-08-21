@@ -4,7 +4,7 @@
 		 	<%= f.input :body, input_html: {class: 'comment-content'} %>                              
       <%= f.input :user_id, :as => :hidden, input_html: { value: current_user.id } %>
 		 	<%= f.input :event_id, :as => :hidden, input_html: { value: event.id }%>
-		 	<%= f.submit %>
+		 	<%= f.submit "Create Comment", class: 'btn btn-success btn-md ' %>
+      <%= link_to 'Close', events_path, class: 'btn btn-secondary btn-md' %>
 	 	<% end %>
 	<% end %>
-</div>
