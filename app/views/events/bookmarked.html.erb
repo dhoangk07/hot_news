@@ -1,7 +1,4 @@
-<h3 align="center">Bookmark Page</h3>
-<div class="offset-3">
-  <%= paginate @events %>
-</div>
+<%= render 'pagination' %>
 <% @events.each do |event| %>
   <div class="row">
     <div class="col-xs-9 col-xs-offset-2">
@@ -15,7 +12,5 @@
     </div>
   </div>
 <% end %>
-<div class="offset-3">
-  <%= paginate @events %>
-</div>
+<%= render 'pagination' %>
 <%= render 'footer' %>

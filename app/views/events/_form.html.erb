@@ -1,6 +1,4 @@
-<div class="offset-3">
-  <%= paginate @events %>
-</div>
+<%= render 'pagination' %>
 <div class="container mb-lg-4">
   <% events.each do |event| %>
     <nav aria-label="breadcrumb">
@@ -14,7 +12,5 @@
     </nav>
   <% end %>
 </div>
-<div class="offset-3">
-  <%= paginate @events %>
-</div>
+<%= render 'pagination' %>
 <%= render 'footer' %>
