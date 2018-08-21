@@ -1,2 +1,2 @@
-$('.fill-data').append('<%= @comment.body %> </br>by <b><%= @comment.user.name %></b>-<%= time_ago_in_words(@comment.created_at) %>');
+$('.fill-data').append('<%= @comment.body %> </br>by <b><%= @comment.user.name %></b>-<%= time_ago_in_words(@comment.created_at) %></br>');
 $('.comment-content').val('');
