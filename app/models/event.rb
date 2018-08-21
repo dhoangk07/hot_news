@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   paginates_per 25
   validates_uniqueness_of :source
 
+  
   def self.search(search)
     if search
       self.where('title ILIKE ?', "%#{search}%")
