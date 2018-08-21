@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   has_many :hides
   has_many :likes
   has_many :bookmarks
-  paginates_per 5
+  paginates_per 25
   validates_uniqueness_of :source
 
   def self.search(search)
