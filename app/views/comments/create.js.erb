@@ -1,3 +1,2 @@
-$('.fill-data').html('<%= @comment.body %>');
-$('.fill-data').prepend('<%= @comment.body %>');
+$('.fill-data').append('<%= @comment.body %><%= @comment.created_at %><%= @comment.user.name %>');
 $('.comment-content').val('');
