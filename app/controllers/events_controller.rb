@@ -5,9 +5,8 @@ class EventsController < ApplicationController
     if current_user.present?
       @events = Event.where.not(id: current_user.hides.select(:event_id))
     else
-      @events = Event.order("created_at DESC").page params[:page]
+      @events = Event.order("created_at DESC").page(params[:page]).per(3)
     end
-
     @events = if params[:tag]
       @events = @events.tagged_with(params[:tag])
 
