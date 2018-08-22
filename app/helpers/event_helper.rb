@@ -15,11 +15,7 @@ module EventHelper
 		end
 	end
 
-	def count_comment(user, event)
-		if user_signed_in?
-	    Comment.where(event_id: event.id, user_id: user.id).count
-	  end
-  end
+	
 
 
 	def hide?(user, event)

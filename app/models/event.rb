@@ -9,6 +9,9 @@ class Event < ApplicationRecord
   paginates_per 25
   validates_uniqueness_of :source
 
+  def count_comment    
+    Comment.where(event_id: self.id).count
+  end
   
   def self.search(search)
     if search
