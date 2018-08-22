@@ -16,7 +16,9 @@ module EventHelper
 	end
 
 	def count_comment(user, event)
-    Comment.where(event_id: event.id, user_id: user.id).count
+		if user_signed_in?
+	    Comment.where(event_id: event.id, user_id: user.id).count
+	  end
   end
 
 
