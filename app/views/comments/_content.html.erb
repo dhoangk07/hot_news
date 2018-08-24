@@ -1,9 +1,11 @@
-<div class="fill-data offset-1">
+<div class="fill-data-<%=event.id%> offset-1">
   <% event.comments.each do |comment| %>
-    <%= comment.body %> </br>
-    <small><b>
-      <%= comment.user.name %> - 
+  <div class="col-10 pt-2 pb-3">
+    <p class="alert alert-dark my-0 mr-2"><%= comment.body %></p>
+    <small class="text-secondary">
+      by <%= comment.user.name %> - 
       <%= time_ago_in_words(comment.created_at) %><br>
-    </b></small> 
+    </small> 
+  </div>
   <% end %>
 </div>
