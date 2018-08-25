@@ -1,28 +1,16 @@
-
-
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-   Dropdown <span class="caret"></span>
+<div class="dropdown ">
+  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-plus-square"></i>
   </button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li class="dropdown">
-      <a href="#">One more dropdown</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li class="dropdown">
-          <a href="#">One more dropdown</a>
-          <ul class="dropdown-menu">
-          ...
-          </ul>
-        </li>
-        <li><a href="#">Something else here</a></li>
-        <li><a href="#">Separated link</a></li>
-       </ul>
-    </li>
-    <li><a href="#">Something else here</a></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% if user_signed_in? %>
+      <a class="dropdown-item" href="#"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "ml-3" %></a>
+      <a class="dropdown-item" href="#"><%= link_to "Edit your profile", edit_user_path(current_user), class: "ml-3"%></a>
+      <a class="dropdown-item" href="#"><%=link_to "Add RssLink", new_rsslink_path, class: "ml-3"%></a>
+    <% else %>
+      <a class="dropdown-item" href="#"><%= link_to "Sign in ", new_user_session_path, class: "ml-3"%></a>
+      <a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path, class: "ml-3"%></a>
+    <% end %> 
+  </div>
 </div>
+
