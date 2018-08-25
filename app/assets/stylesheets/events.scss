@@ -1,6 +1,6 @@
 #tag_cloud {
-  width: 400px;
-  line-height: 1.6em;
+  width         : 400px;
+  line-height   : 1.6em;
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
@@ -8,9 +8,9 @@
 
 abbr[title] {
   text-decoration: underline dotted;
-  cursor: help;
-  border-bottom: 0;
-  color: red;
+  cursor         : help;
+  border-bottom  : 0;
+  color          : red;
   }
 
 .darker_event {
@@ -24,10 +24,18 @@ abbr[title] {
   color: #00ddff;
 }
 .fixed-bottom {
-  clear: both;
+  clear   : both;
   position: relative;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1030;
+  right   : 0;
+  bottom  : 0;
+  left    : 0;
+  z-index : 1030;
+}
+hr {
+  border          : 0;
+  clear           :both;
+  display         :block;
+  width           :100%;               
+  background-color:#e9ecef;
+  height          :1px;
 }
