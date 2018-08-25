@@ -16,4 +16,6 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require google_analytics
+//= require common/bootstrap-dropdownhover
+//= require common/bootstrap.min
 
