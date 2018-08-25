@@ -1,3 +1,5 @@
-$('.fill-data-<%=@event.id%>').append("<%= j(render 'content_comment', comment: @comment) %>");
+<%if @comment.persisted?%>
+  $('.fill-data-<%=@event.id%>').prepend("<%= j(render 'content_comment', comment: @comment) %>");
+<%end%>
 $('.comment-content').val('');
 $('#count-comment-<%=@event.id%>').html('<%= @event.count_comment %>')
