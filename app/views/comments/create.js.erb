@@ -1,3 +1,3 @@
-$('.fill-data-<%=@event.id%>').append('<p class="alert alert-dark my-0 col-9 pt-2 pb-3 ml-3 mr-4"><%= @comment.body %> </p><small class="ml-3 text-secondary">by <%= @comment.user.name %>-<%= time_ago_in_words(@comment.created_at) %></small></br>');
+$('.fill-data-<%=@event.id%>').append("<%= j(render 'content_comment', comment: @comment) %>");
 $('.comment-content').val('');
 

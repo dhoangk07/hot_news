@@ -1,0 +1,7 @@
+<div class="col-10 pt-4 pb-3">
+  <p class="alert alert-dark my-0 mr-2"><%= comment.body %></p>
+  <small class="text-secondary">
+    by <%= comment.user.name %> - 
+    <%= time_ago_in_words(comment.created_at) %><br>
+  </small> 
+</div>
