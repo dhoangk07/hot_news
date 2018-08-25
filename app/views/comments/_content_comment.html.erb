@@ -1,6 +1,6 @@
 <% if comment.persisted? %>
   <div class="col-11 pb-3 pr-2">
-    <p class="alert alert-dark my-0 mr-2"><%= comment.body %></p>
+    <p class="my-0 mr-2 grey-color"><%= comment.body %></p>
     <small class="text-secondary">
       by <%= comment.user.try(:name) %>-<%= time_ago_in_words(comment.created_at) %> ago<br>
     </small> 
