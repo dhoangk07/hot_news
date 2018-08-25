@@ -15,26 +15,24 @@
   <% else %>
     <%= link_to 'Like', like_event_path(event) %>
   <% end %>
-
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalLong-<%=event.id%>">
     <i class="fa fa-comments", title="Comment"></i>
   </button>
     <span class="btn btn-primary btn-sm" id="count-comment-<%=event.id%>"><%= event.count_comment %> </span>
-
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong-<%=event.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content" >
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Comment</h5>
+        <div class="modal-header ">
+          <h5 class="modal-title offset-5 text-success" id="exampleModalLongTitle" align="center">Comment</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= render 'comments/content', event: event %>
         <%= render 'comments/form',    event: event %>
-        
+        <hr class="text-primary my-0">
+        <%= render 'comments/content', event: event %>
       </div>
     </div>
   </div>
