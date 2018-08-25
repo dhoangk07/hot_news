@@ -1,12 +1,56 @@
-<nav class="nav">
-  <div class="pull-right mt-lg-4 pl-lg-4">
-    <% if user_signed_in? %>
-      <span><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-custom waves-effect w-md waves-spanght btn-sm m-b-5" %></span>
-      <span><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-outline-success btn-custom waves-effect w-md waves-spanght btn-sm m-b-5" %></span>
-      <span><%=link_to "Add RssLink", new_rsslink_path, class: "btn btn-outline-primary btn-custom btn-sm waves-effect w-md waves-spanght m-b-5" %></span>
-    <% else %>
-      <span><%= link_to "Sign in ", new_user_session_path, class: "btn btn-outline-primary btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
-      <span><%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-warning btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
-    <% end %>  
+<div class="dropdown pull-left">
+  <button class="dropbtn"><i class="fa fa-plus"></i></button>
+  <div class="dropdown-content">
+    <nav class="container">
+      <div class="pull-left pl-lg-4">
+        <div class="row">
+          <% if user_signed_in? %>
+            <span><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-custom waves-effect w-md waves-spanght btn-sm m-b-5" %></span>
+            <span><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-outline-success btn-custom waves-effect w-md waves-spanght btn-sm m-b-5" %></span>
+            <span><%=link_to "Add RssLink", new_rsslink_path, class: "btn btn-outline-primary btn-custom btn-sm waves-effect w-md waves-spanght m-b-5" %></span>
+            <% else %>
+            <span><%= link_to "Sign in ", new_user_session_path, class: "btn btn-outline-primary btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
+            <span><%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-warning btn-custom waves-effect w-md waves-spanght m-b-5" %></span>
+          <% end %>  
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
+</div>
+
+<style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  font-size: 12px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 550px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
