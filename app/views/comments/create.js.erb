@@ -1,3 +1,3 @@
 $('.fill-data-<%=@event.id%>').append("<%= j(render 'content_comment', comment: @comment) %>");
 $('.comment-content').val('');
-
+$('#count-comment-<%=@event.id%>').html('<%= @event.count_comment %>')
