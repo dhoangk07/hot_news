@@ -1,5 +1,6 @@
-<div class="fill-data-<%=event.id%> offset-1">
+<div class="fill-data-<%=event.id%> offset-1 pt-4 scroll-box">
   <% event.comments.each do |comment| %>
-  <%= render 'comments/content_comment', comment: comment %>
+    <%= render 'comments/content_comment', comment: comment %>
   <% end %>
 </div>
+
