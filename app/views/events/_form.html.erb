@@ -1,7 +1,7 @@
 <%= render 'pagination' %>
 <div class="container mb-4 col-7">
   <% events.each do |event| %>
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="event-element">
       <ol class="breadcrumb <%= read_event_class(current_user, event)  %> mb-1">
         <div class="breadcrumb-item col-12 <%= read_event_class(current_user, event) %> event-wrapper pr-lg-3" >
           <%= render 'right_btn',   event: event %>
