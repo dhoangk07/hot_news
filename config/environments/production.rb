@@ -91,10 +91,18 @@ Rails.application.configure do
 
   # Add ExceptionNotification
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
-    :email_prefix => "[PREFIX] ",
-    :sender_address => %{Dinh Hoang <dhoangk07@gmail.com>},
-    :exception_recipients => %w{Đinh Huy <dinhhuydh@gmail.com>}
+  # :email => {
+  #   :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+  #   :email_prefix => "[Heroku | ERROR_NOTIFY] ",
+  #   :sender_address => %{Dinh Hoang <dhoangk07@gmail.com>},
+  #   :exception_recipients => %w{Đinh Huy <dinhhuydh@gmail.com>}
+  # }
+  :slack => {
+    :webhook_url => "https://hooks.slack.com/services/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",
+    :channel => "#hot_news",
+    :additional_parameters => {
+      :icon_url => "https://unsplash.com/photos/reZbvcVASPI",
+      :mrkdwn => true
+    }
   }
 end
