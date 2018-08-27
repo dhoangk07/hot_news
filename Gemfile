@@ -21,6 +21,8 @@ gem 'simple_form'            , '~> 4.0', '>= 4.0.1'
 gem 'watir'
 gem 'webdrivers'
 gem 'kaminari'
+gem 'exception_notification'
+gem 'slack-notifier'
 
 group :development, :test do
   gem 'byebug'               , platforms: [:mri, :mingw, :x64_mingw]

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :prepare_exception_notifier
   protect_from_forgery with: :exception
   layout :layout_by_resource
   # for learning
@@ -13,5 +14,11 @@ class ApplicationController < ActionController::Base
     else
       "application"
     end
+  end
+
+  def prepare_exception_notifier
+    request.env["exception_notifier.exception_data"] = {
+      :current_user => current_user
+    }
   end
 end

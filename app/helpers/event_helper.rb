@@ -15,9 +15,6 @@ module EventHelper
 		end
 	end
 
-	
-
-
 	def hide?(user, event)
 		user.present? && Hide.where(:user_id => user.id, :event_id => event.id).present?
 	end
