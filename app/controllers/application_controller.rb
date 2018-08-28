@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :prepare_exception_notifier
   protect_from_forgery with: :exception
+  before_action :prepare_exception_notifier
   layout :layout_by_resource
   # for learning
   unless Rails.env.test?
