@@ -1,16 +1,15 @@
-<div class="dropdown ">
-  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fa fa-plus-square"></i>
+<div class="dropdown pull-right mr-5">
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-bars"></i>
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
     <% if user_signed_in? %>
-      <a class="dropdown-item" href="#"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "ml-3" %></a>
-      <a class="dropdown-item" href="#"><%= link_to "Edit your profile", edit_user_path(current_user), class: "ml-3"%></a>
-      <a class="dropdown-item" href="#"><%=link_to "Add RssLink", new_rsslink_path, class: "ml-3"%></a>
+      <a class="dropdown-item href="#"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-sm " %></a>
+      <a class="dropdown-item" href="#"><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-outline-primary btn-sm"%></a>
+      <a class="dropdown-item" href="#"><%=link_to "Add RssLink", new_rsslink_path, class: "btn btn-outline-success btn-sm"%></a>
     <% else %>
-      <a class="dropdown-item" href="#"><%= link_to "Sign in ", new_user_session_path, class: "ml-3"%></a>
-      <a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path, class: "ml-3"%></a>
+      <a class="dropdown-item" href="#"><%= link_to "Sign in ", new_user_session_path, class: "btn btn-outline-primary btn-sm"%></a>
+      <a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary btn-sm"%></a>
     <% end %> 
   </div>
 </div>
-
