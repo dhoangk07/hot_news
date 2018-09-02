@@ -23,6 +23,7 @@ gem 'webdrivers'
 gem 'kaminari'
 gem 'exception_notification'
 gem 'slack-notifier'
+gem 'letter_opener'          , '~> 1.6'
 
 group :development, :test do
   gem 'byebug'               , platforms: [:mri, :mingw, :x64_mingw]

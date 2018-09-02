@@ -105,4 +105,5 @@ Rails.application.configure do
       :mrkdwn => true
     }
   }
+  Rails.application.default_url_options = Rails.application.config.action_mailer.default_url_options
 end

@@ -3,7 +3,6 @@
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <%= f.input :email, required: true, autocomplete: "email", placeholder: "Enter Email"  %>
-    <%= render "devise/shared/links" %>
     <%= f.submit "Reset", class: "btn btn-success waves-effect waves-light btn-block btn-lg mt-lg-3" %>
   <% end %>
 </div>
