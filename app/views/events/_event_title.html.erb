@@ -3,6 +3,7 @@
 </div>
 <div class="event-source" >
   <h6><%= link_to "#{host_without_www(event.source).capitalize}", events_path(filter: host_without_www(event.source))%></h6> 
+  <p> <%=event.created_at.strftime('%d.%m.%Y %H:%M') %></p>
 </div>
 <button class="btn btn-light btn-sm" type="button" title="Tags">
   <i class="fa fa-tags icon-tag", title="Tags">Tags</i>
