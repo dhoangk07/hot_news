@@ -23,6 +23,23 @@
     <%= link_to '<i class="fa fa-twitter-square fa-2x" ></i>'.html_safe, 'https://twitter.com', :target => "_blank" %>
   </div>
 </nav>
-<style type="text/css">
-  
-</style>
+<script type="text/javascript">
+  function backtotop() {
+    $('#back-to-top').fadeOut();
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            $('#back-to-top').fadeIn(1500);
+        } else {
+            $('#back-to-top').fadeOut(500);
+        }
+    });
+    // scroll body to 0px on click
+    $('#top').on('click', function() {
+        $('top').tooltip('hide');
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+  }
+</script>
