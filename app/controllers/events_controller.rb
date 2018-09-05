@@ -46,9 +46,11 @@ class EventsController < ApplicationController
   end
 
   def increase_view_count
-    if Reading.where(:user_id => current_user.id, :event_id => @event.id).blank?
-      @reading = @event.readings.create(user_id: current_user.id)
-    end
+    if user_signed_in?
+      if Reading.where(:user_id => current_user.id, :event_id => @event.id).blank?
+        @reading = @event.readings.create(user_id: current_user.id)
+      end
+    end 
     @event.view_count +=1
     @event.save
   	respond_to do |format|
