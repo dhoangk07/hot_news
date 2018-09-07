@@ -1,5 +1,5 @@
 <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
-  <h1 class="text-center font-weight-bold text-success mt-lg-5 mt-md-5 mt-sm-5 mt-5">Forgot your password? </h1>
+  <h1 class="text-center font-weight-bold text-success mt-5">Forgot your password? </h1>
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <%= f.input :email, required: true, autocomplete: "email", placeholder: "Enter Email"  %>

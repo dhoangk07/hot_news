@@ -1,11 +1,13 @@
 <div class="container col-lg-6 offset-lg-3">
   <%= simple_form_for(@user) do |f| %>
-  <%= f.input :name, required: true, placeholder: "Enter Name" %>
-  <%= f.input :email, required: true, placeholder: "Enter Email" %>
-  <%= f.input :password, required: true, placeholder: "Enter Password" %>
-  <%= f.submit "Create", class: 'btn btn-success btn-lg btn-block' %>
+    <%= f.input :name,     required: true, placeholder: "Enter Name" %>
+    <%= f.input :email,    required: true, placeholder: "Enter Email" %>
+    <% if action_name == 'new' %>
+      <%= f.input :password, required: true, placeholder: "Enter Password" %>
+    <% end %>
+    <%= f.input :photo, as: :file, class: "form-control" %>
+    <%= f.submit "Create", class: 'btn btn-success btn-lg btn-block' %>
   <% end %>
-  <%= link_to 'Back', events_path, class: 'btn btn-outline-danger mt-lg-3'%>
 </div>
 
 

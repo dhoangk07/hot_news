@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
   		flash[:success] = "Welcome to the alpha blog #{@user.username}"
-  		redirect_to articles_path
+  		redirect_to edit_user_path(@user)
   	else
       flash.now[:error] = @user.errors.full_messages.join(", ")
   		render 'new'
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update
   	if @user.update(user_params)
   		flash[:success] = "Your account was updated successfully" 
-  		redirect_to articles_path
+  		redirect_to edit_user_path(@user)
   	else
       flash.now[:error] = @user.errors.full_messages.join(", ")
   		render 'edit'
@@ -38,6 +38,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     def user_params
-    	params.require(:user).permit(:name, :email, :password)
+      if params[:user][:password].blank?
+    	  params.require(:user).permit(:name, :email, :photo)
+      else
+        if params[:user][:photo].blank?
+          params.require(:user).permit(:name, :email, :password)
+        else
+          params.require(:user).permit(:name, :email, :password, :photo)
+        end
+      end
     end
 end
