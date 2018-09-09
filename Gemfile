@@ -23,7 +23,7 @@ gem 'webdrivers'
 gem 'kaminari'
 gem 'exception_notification'
 gem 'slack-notifier'
-gem 'letter_opener'          , '~> 1.6'
+
 
 group :development, :test do
   gem 'byebug'               , platforms: [:mri, :mingw, :x64_mingw]
@@ -37,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'          , '~> 1.6'
   gem 'web-console'          , '>= 3.3.0'
   gem 'listen'               , '>= 3.0.5', '< 3.2'
   gem 'spring'
@@ -44,6 +45,7 @@ group :development do
 end
 
 group :production do
+
   gem 'simple_form'            , '~> 4.0', '>= 4.0.1'
 end
 
