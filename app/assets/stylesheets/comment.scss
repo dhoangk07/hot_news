@@ -1,8 +1,13 @@
 .scroll-box{
-  height: 350px;
+  height  : 350px;
   overflow: scroll;
 }
 .grey-color{
   background-color: #f4f4f4;
-  border: none;
+  border          : none;
+}
+.user-comment-avatar{
+  width        : 25px;
+  height       : 25px;
+  border-radius: 50%;
 }

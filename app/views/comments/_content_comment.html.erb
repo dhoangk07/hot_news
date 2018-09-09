@@ -1,8 +1,11 @@
 <% if comment.persisted? %>
   <div class="col-11 pb-3 pr-2">
     <p class="my-0 mr-2 grey-color"><%= comment.body %></p>
-    <small class="text-secondary">
-      by <%= comment.user.try(:name) %>-<%= time_ago_in_words(comment.created_at) %> ago<br>
-    </small> 
+    <div>
+      <small class="text-secondary">
+        <span>by <%= comment.user.try(:name) %>  <%= image_tag current_user.photo.url(:thumb), class: "user-comment-avatar img-fluid"%></span>
+        <span class="float-right"><%= time_ago_in_words(comment.created_at)%>ago</span> 
+      </small> 
+    </div>
   </div>
 <% end %>
