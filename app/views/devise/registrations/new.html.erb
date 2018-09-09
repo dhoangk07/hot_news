@@ -2,17 +2,16 @@
   <h1 class="text-center font-weight-bold text-success mt-lg-5 mt-md-5 mt-sm-5 mt-5">Sign up</h1>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
-
       <%= f.input :email, required: true, autofocus: true, placeholder: "Email address" %>
       <%= f.input :password, required: true, placeholder: "Password" %>
       <%= f.input :password_confirmation, required: true, placeholder: "Password confirmation", autocomplete: "off" %>
-
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em class="">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
       </div>
+      <%= f.input :photo, as: :file, class: "form-control" %>
       <div class="actions">
         <%= f.submit "Sign up", class: 'btn btn-success waves-effect waves-light btn-block btn-lg mt-lg-3' %>
       </div>

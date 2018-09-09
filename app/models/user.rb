@@ -6,4 +6,11 @@ class User < ApplicationRecord
   has_many :hides
   has_many :likes
   has_many :bookmarks
+  has_attached_file :photo,
+    :styles   => {
+      :medium => "200x200",
+      :thumb  => "50x50#",
+      :small  => "150x150>"}
+  validates_attachment_content_type :photo, 
+           :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 end
