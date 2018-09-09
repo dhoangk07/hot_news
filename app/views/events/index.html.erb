@@ -1,5 +1,4 @@
-
-<h1 class="text-center"><%= link_to 'Top Events', events_path, class: "text-success", id: "top" %></h1> 
+<%= link_to raw('<h1>Top Events</h1>'), events_path, class: "text-success text-center", id: "top" %>
 <% puts @events %>
 <%= render 'form', events: @events %>
 

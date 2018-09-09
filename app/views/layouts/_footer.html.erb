@@ -1,8 +1,10 @@
-<div id="back-to-top" class="mb-5" style="display: block;">
-  <a class="top mr-4" id="top" href="#top">
-    <i class="fa fa-angle-double-up btn-sm" aria-hidden="true" title="Back To Top"></i> 
-  </a>
-</div>
+ <% if action_name == 'index' && controller_name == 'events' %>
+  <div id="back-to-top" class="mb-5" style="display: block;">
+    <a class="top mr-4" id="top" href="#top">
+      <i class="fa fa-angle-double-up btn-sm" aria-hidden="true" title="Back To Top"></i> 
+    </a>
+  </div>
+<% end %>
 <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-default">
   <a class="navbar-brand text-primary" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

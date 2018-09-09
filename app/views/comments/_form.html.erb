@@ -1,12 +1,14 @@
 <div class="modal-body">
- 	<%= simple_form_for [event, event.comments.new], method: :post, remote: true do |f| %>
-	 	<%= f.input :body, input_html: {class: 'comment-content col-10 offset-1 px-0 pl-3'}, label: false, placeholder: "Enter comment here" %>                              
-    <%= f.input :user_id,  :as => :hidden, input_html: { value: current_user.id } %>
-	 	<%= f.input :event_id, :as => :hidden, input_html: { value: event.id } %>
-    <div class=" mr-3">
-      <%= f.submit "Submit", class: 'btn btn-success btn-sm float-right mr-4' %>
-    </div>
- 	<% end %>
+  <% if user_signed_in? %>
+   	<%= simple_form_for [event, event.comments.new], method: :post, remote: true do |f| %>
+  	 	<%= f.input :body, input_html: {class: 'comment-content col-10 offset-1 px-0 pl-3'}, label: false, placeholder: "Enter comment here" %>                              
+      <%= f.input :user_id,  :as => :hidden, input_html: { value: current_user.id } %>
+  	 	<%= f.input :event_id, :as => :hidden, input_html: { value: event.id } %>
+      <div class=" mr-3">
+        <%= f.submit "Submit", class: 'btn btn-success btn-sm float-right mr-4' %>
+      </div>
+    <% end %>
+  <% end %>
 </div> 
 
 

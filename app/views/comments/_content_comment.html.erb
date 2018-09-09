@@ -3,8 +3,8 @@
     <p class="my-0 mr-2 grey-color"><%= comment.body %></p>
     <div>
       <small class="text-secondary">
-        <span>by <%= comment.user.try(:name) %>  <%= image_tag current_user.photo.url(:thumb), class: "user-comment-avatar img-fluid"%></span>
-        <span class="float-right"><%= time_ago_in_words(comment.created_at)%>ago</span> 
+        <span><%= image_tag current_user.photo.url(:thumb), class: "user-comment-avatar img-fluid"%>  <%= comment.user.try(:name) %></span>
+        <span class="float-right"><%= time_ago_in_words(comment.created_at)%> ago</span> 
       </small> 
     </div>
   </div>

@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
-  <div class="dropdown pull-right mr-5">
-    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div class="dropdown pull-right mr-4 pr-3 pt-4">
+    <button class="dropdown-toggle border-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <% if current_user.photo.blank? %>
         <p class='without-avatar'><%= current_user.email[0..1].upcase %></p> 
       <% else %>
@@ -8,19 +8,19 @@
       <% end %>
     </button>
     <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item href="#"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-sm " %></a>
-      <a class="dropdown-item" href="#"><%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-outline-primary btn-sm"%></a>
-      <a class="dropdown-item" href="#"><%=link_to "Add RssLink", new_rsslink_path, class: "btn btn-outline-success btn-sm"%></a>
+      <button class="dropdown-item" type="button"><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+      <button class="dropdown-item" type="button"><%= link_to "Edit your profile", edit_user_path(current_user)%></button>
+      <button class="dropdown-item" type="button"><%=link_to "Add RssLink", new_rsslink_path%></button>
     </div>
   </div>
 <% else %>
-  <div class="dropdown pull-right mr-5 mt-5">
-    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <div class="dropdown pull-right mr-4 pr-3 pt-4">
+    <button class="btn btn-success dropdown-toggle user-avatar mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fa fa-bars"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#"><%= link_to "Sign in ", new_user_session_path, class: "btn btn-outline-primary btn-sm"%></a>
-      <a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-primary btn-sm"%></a>
+      <button class="dropdown-item" type="button"><%= link_to "Sign in ", new_user_session_path%></button>
+      <button class="dropdown-item" type="button"><%= link_to "Sign up", new_user_registration_path%></button>
     </div>
   </div>
 <% end %> 
