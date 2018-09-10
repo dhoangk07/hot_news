@@ -1,7 +1,9 @@
 <span class="input-group-btn float-right">
-  <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary " type="button"  title="Hide">
-    <i class="fa fa-keyboard-o hide-btn" id="hide-<%=event.id%>" ></i>
-  </button>
+  <% if user_signed_in? %>
+    <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary " type="button"  title="Hide">
+      <i class="fa fa-keyboard-o hide-btn" id="hide-<%=event.id%>" ></i>
+    </button>
+  <% end %>
   <%unless bookmark?(current_user, event)%>
     <button class="btn btn-icon waves-effect waves-light btn-sm btn-primary m-b-5" type="button" title="Bookmark">
       <i class="fa fa-star bookmark-btn" id="bookmark-<%=event.id%>"></i>
