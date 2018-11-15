@@ -98,7 +98,7 @@ Rails.application.configure do
   #   :exception_recipients => %w{Đinh Huy <dinhhuydh@gmail.com>}
   # }
   :slack => {
-    :webhook_url => "https://hooks.slack.com/services/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",
+    :webhook_url => "https://hooks.slack.com/services/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",
     :channel => "#hot_news",
     :additional_parameters => {
       :icon_url => "https://unsplash.com/photos/reZbvcVASPI",
