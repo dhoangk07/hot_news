@@ -26,6 +26,8 @@ gem 'slack-notifier'
 gem 'paperclip'              , '~> 6.1'
 gem 'aws-sdk'                , '~> 3.0', '>= 3.0.1'
 gem 'figaro'                 , '~> 1.1', '>= 1.1.1'
+gem 'resque-scheduler'       , '~> 4.3', '>= 4.3.1'
+
 
 group :development, :test do
   gem 'byebug'               , platforms: [:mri, :mingw, :x64_mingw]
