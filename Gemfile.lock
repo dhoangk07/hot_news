@@ -1051,6 +1051,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails-controller-testing
+  resque (~> 1.26)
   resque-scheduler (~> 4.3, >= 4.3.1)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
