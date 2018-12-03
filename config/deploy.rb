@@ -1,7 +1,7 @@
 lock "~> 3.11.0"
 
 set :application, "hot-news"
-set :repo_url, "https://github.com/dhoangk07/locale-hot_news.git"
+set :repo_url, "https://github.com/dhoangk07/hot_news.git"
 
 set :passenger_restart_with_touch, true
 set :deploy_to, "/home/deploy/hot_news"
