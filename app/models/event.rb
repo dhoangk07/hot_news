@@ -1,11 +1,11 @@
 class Event < ApplicationRecord
 	has_many :taggings
-  has_many :tags, through: :taggings
+  has_many :tags, through: :taggings, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :readings
-  has_many :hides
-  has_many :likes
-  has_many :bookmarks
+  has_many :readings, dependent: :destroy
+  has_many :hides, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   paginates_per 25
   validates_uniqueness_of :source
 
