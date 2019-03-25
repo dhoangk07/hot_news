@@ -38,4 +38,8 @@ class Event < ApplicationRecord
       Tag.where(name: n.strip).first_or_create!
     end
   end
+
+  def self.delete_old_events_less_than_100_days_ago
+    self.where("created_at < ?", 100.days.ago).destroy_all
+  end
 end
